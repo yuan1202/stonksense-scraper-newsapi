@@ -9,10 +9,10 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'newsapi'
+BOT_NAME = 'stonksense_scraper_newsapi'
 
-SPIDER_MODULES = ['fxst.spiders']
-NEWSPIDER_MODULE = 'fxst.spiders'
+SPIDER_MODULES = ['stonksense_scraper_newsapi.spiders']
+NEWSPIDER_MODULE = 'stonksense_scraper_newsapi.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -21,11 +21,12 @@ NEWSPIDER_MODULE = 'fxst.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-# mysql setting
-HOST = '192.168.1.100'
-DB = 'NOVA'
-USER = 'nova'
-PW = 'AlLi2050'
+# postgresql setting
+HOST = '188.172.154.51'
+PORT = '5432'
+DATABASE = 'newsapi'
+USER = 'postgres'
+PASSWORD = 'BigSlacker'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -71,7 +72,7 @@ PW = 'AlLi2050'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'fxst.pipelines.FxstPipeline': 300,
+    'stonksense_scraper_newsapi.pipelines.newsapi': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

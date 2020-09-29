@@ -19,7 +19,7 @@ class spider_calendar(scrapy.Spider):
         self.page_size = page_size
     
     def parse(self, response):
-
+        
         try:
             # request data from newsapi
             articles = self.api.get_everything(
