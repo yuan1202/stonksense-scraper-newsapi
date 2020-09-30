@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-import re
 
 import scrapy
 from newsapi import NewsApiClient
@@ -30,12 +29,13 @@ class spider_calendar(scrapy.Spider):
                 sort_by='relevancy',
                 page_size=self.page_size,
                 page=1,
-            )
+            )['articles']
         except Exception as e:
             print(e)
             yield {}
 
         for _, n in enumerate(articles):
+
             yield {
                 'source_id': n['source']['id'],
                 'source_name': n['source']['name'],

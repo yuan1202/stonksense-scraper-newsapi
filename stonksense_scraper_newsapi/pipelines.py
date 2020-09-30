@@ -1,5 +1,4 @@
 import psycopg2
-from . import settings
 import datetime
 
 
@@ -10,25 +9,31 @@ class newsapi(object):
     
     def process_item(self, item, spider):
         
-        self.cursor.execute(
-            '''
-            insert into news (source_id, source_name, author, title, description, url_news, url_img, datetime, content, flag) \
-            values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
-            ''',
-            (
-                item['source_id'],
-                item['source_name'],
-                item['author'],
-                item['title'],
-                item['description'],
-                item['url_news'],
-                item['url_img'],
-                item['datetime'],
-                item['content'],
-                item['flag'],
+        # use try catch to catch any error and roll back database
+        try:
+            self.cursor.execute(
+                '''
+                insert into news (source_id, source_name, author, title, description, url_news, url_img, datetime, content, flag) \
+                values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+                ''',
+                (
+                    item['source_id'],
+                    item['source_name'],
+                    item['author'],
+                    item['title'],
+                    item['description'],
+                    item['url_news'],
+                    item['url_img'],
+                    item['datetime'],
+                    item['content'],
+                    item['flag'],
+                )
             )
-        )
-        self.connection.commit()
+            self.connection.commit()
+        except Exception as e:
+            spider.logger.error(e)
+            spider.logger.info('Rolling back database.')
+            self.connection.rollback()
             
         return item
 
