@@ -5,9 +5,9 @@ import scrapy
 from newsapi import NewsApiClient
 
     
-class spider_calendar(scrapy.Spider):
+class newsapi_spider(scrapy.Spider):
     name = 'newsapi_spider'
-    start_urls = ['https://www.google.com/']
+    start_urls = ['http://quotes.toscrape.com/page/1/']
 
     def __init__(self, query, from_date, to_date, page_size=100, api_key='30329c8f74c440f2a7fb7ada24fcfc47', *args, **kwargs):
         super().__init__(*args, **kwargs)
