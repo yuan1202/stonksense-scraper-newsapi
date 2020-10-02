@@ -21,13 +21,6 @@ NEWSPIDER_MODULE = 'stonksense_scraper_newsapi.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-# postgresql setting
-HOST = '188.172.154.51'
-PORT = '5432'
-DATABASE = 'newsapi'
-USER = 'postgres'
-PASSWORD = 'BigSlacker'
-
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 

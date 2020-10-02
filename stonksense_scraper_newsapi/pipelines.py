@@ -40,11 +40,11 @@ class newsapi(object):
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            host=crawler.settings.get('HOST'),
-            port=crawler.settings.get('PORT'),
-            database=crawler.settings.get('DATABASE'),
-            user=crawler.settings.get('USER'),
-            password=crawler.settings.get('PASSWORD'),
+            host=crawler.settings.get('DB_HOST'),
+            port=crawler.settings.get('DB_PORT'),
+            database=crawler.settings.get('DB_DATABASE'),
+            user=crawler.settings.get('DB_USER'),
+            password=crawler.settings.get('DB_PASSWORD'),
         )
 
     def close_spider(self, spider):
