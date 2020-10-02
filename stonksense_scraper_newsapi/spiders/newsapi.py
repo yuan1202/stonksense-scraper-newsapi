@@ -9,9 +9,9 @@ class newsapi_spider(scrapy.Spider):
     name = 'newsapi_spider'
     start_urls = ['http://quotes.toscrape.com/page/1/']
 
-    def __init__(self, query, from_date, to_date, page_size=100, api_key='30329c8f74c440f2a7fb7ada24fcfc47', *args, **kwargs):
+    def __init__(self, query, from_date, to_date, page_size=100, *args, **kwargs):
+        # api_key='30329c8f74c440f2a7fb7ada24fcfc47'
         super().__init__(*args, **kwargs)
-        self.api = NewsApiClient(api_key=self.settings.get('NEWSAPI_KEY'))
         self.query = query
         self.from_date = from_date
         self.to_date = to_date
@@ -20,8 +20,10 @@ class newsapi_spider(scrapy.Spider):
     def parse(self, response):
         
         try:
+            # setup newsapi
+            api = NewsApiClient(api_key=self.settings.get('NEWSAPI_KEY'))
             # request data from newsapi
-            articles = self.api.get_everything(
+            articles = api.get_everything(
                 q=self.query,
                 from_param=self.from_date,
                 to=self.to_date,
